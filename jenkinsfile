@@ -1,0 +1,20 @@
+pipeline {
+    agent {
+        docker {
+            image 'python:3.9-slim' // Utiliser une image Python officielle
+        }
+    }
+    stages {
+        stage('Cloner le dépôt') {
+            steps {
+                git 'https://github.com/arseneRuben/huffman_python.git'
+            }
+        }
+       
+        stage('Exécuter le script') {
+            steps {
+                sh 'python main.py'
+            }
+        }
+    }
+}

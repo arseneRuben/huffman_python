@@ -8,9 +8,11 @@ class HuffmanCoding:
     def __init__(self):
         self.codes = {}
         self.reverse_mapping = {}
+        self.frequency_table = {}
 
     def build_frequency_table(self, text):
         """Construit une table de fréquences à partir d'un texte."""
+        self.frequency_table =  Counter(text)
         return Counter(text)
 
     def build_huffman_tree(self, frequency_table):
