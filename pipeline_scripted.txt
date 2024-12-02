@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/arseneRuben/huffman_python.git']])
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building stage'
+                echo env.BUILD_NUMBER
+                git branch: 'main', url: 'https://github.com/arseneRuben/huffman_python.git '
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing stage'
+                sh 'python3 test_huffman.py'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying stage'
+            }
+        }
+    }
+}
